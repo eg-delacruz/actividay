@@ -1,0 +1,43 @@
+//Fonts
+$font1: var(--rubik), sans-serif;
+$font2: var(--nunito_sans), sans-serif;
+
+//Colors
+$color--primary: #88d498;
+
+$color--secondary-dark-green: #1a936f;
+$color--secondary-light-green: #c6dabf;
+
+$color--bg-white: #f3e9d2;
+$color--bg-blue: #114b5f;
+
+$color--black: #000000;
+$color--white: #ffffff;
+
+$color--btn-red: #ad2146;
+
+/////////////////////////
+//       Functions     //
+/////////////////////////
+
+@function pixelToRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+/////////////////////////
+//        Mixins       //
+/////////////////////////
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: pixelToRem($size);
+}
+
+//Paragraphs
+@mixin paragraph--small {
+  @include font-size(12px);
+}
+@mixin paragraph--big {
+  @include font-size(18px);
+}

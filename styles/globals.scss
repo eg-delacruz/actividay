@@ -1,0 +1,57 @@
+@import './normalize.scss';
+@import './Vars.scss';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: $font2;
+}
+
+html,
+body {
+  font-family: $font2;
+  scroll-behavior: smooth;
+  background-color: $color--bg-white;
+  @include font-size(16px);
+  color: $color--black;
+}
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font1;
+  font-weight: 700;
+}
+h1 {
+  @include font-size(42px);
+}
+h2 {
+  @include font-size(32px);
+}
+h3 {
+  @include font-size(26px);
+}
+h4 {
+  @include font-size(22px);
+}
+h5 {
+  @include font-size(18px);
+}
+h6 {
+  @include font-size(16px);
+}
+
+[data-theme='dark'] html,
+[data-theme='dark'] body {
+  background-color: $color--bg-blue;
+  color: $color--bg-white;
+}
