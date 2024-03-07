@@ -1,15 +1,26 @@
-import { useTheme } from 'next-themes';
-import { useEffect } from 'react';
+import { useTheme } from "next-themes";
+import { use, useEffect } from "react";
 
 //Redux
-import { useAppSelector, useAppDispatch } from '@redux/hooks';
-import { selectActivitiesState } from '@redux/slices/activitiesSlices';
+import { useAppSelector, useAppDispatch } from "@redux/hooks";
+import {
+  selectActivitiesState,
+  getActivities,
+} from "@redux/slices/activitiesSlices";
+import { useDispatch } from "react-redux";
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
 
-  //const activitiesReducer = useAppSelector(selectActivitiesState);
-  //console.log({ activitiesReducer });
+  //Redux
+  const dispatch = useAppDispatch();
+
+  const activitiesReducer = useAppSelector(selectActivitiesState);
+  console.log({ activitiesReducer });
+
+  useEffect(() => {
+    dispatch(getActivities());
+  }, []);
 
   return (
     <>
