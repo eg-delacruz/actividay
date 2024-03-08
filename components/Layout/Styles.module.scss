@@ -1,0 +1,30 @@
+@import '../../styles/vars.scss';
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: $color--primary;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.footer {
+  margin-top: auto;
+  background-color: $color--primary;
+}
+
+//Dark theme styles
+[data-theme='dark'] .header,
+[data-theme='dark'] .footer {
+  background-color: $color--secondary-dark-green;
+}

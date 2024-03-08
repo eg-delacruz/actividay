@@ -12,6 +12,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "target": "ES5",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
     "paths": {
       "@components/*": ["./components/*"],
       "@font/*": ["./font/*"],

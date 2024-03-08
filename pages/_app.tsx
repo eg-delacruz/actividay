@@ -1,20 +1,21 @@
-import "@styles/globals.scss";
-import { ThemeProvider } from "next-themes";
-import type { AppProps } from "next/app";
+import '@styles/globals.scss';
+import { ThemeProvider } from 'next-themes';
+import type { AppProps } from 'next/app';
 
 //Redux
-import { Provider } from "react-redux";
-import { wrapper } from "@redux/configureStore";
+import { Provider } from 'react-redux';
+import { wrapper } from '@redux/configureStore';
 
 //Fonts
-import { rubik, nunito_sans } from "@font/font";
+import { rubik, nunito_sans } from '@font/font';
 
 export default function App({ Component, pageProps, ...rest }: AppProps) {
+  //Redux configuration
   const { store, props } = wrapper.useWrappedStore(rest);
 
   return (
     <Provider store={store}>
-      <ThemeProvider enableSystem={false} defaultTheme="light">
+      <ThemeProvider enableSystem={false} defaultTheme='light'>
         <div className={`${rubik.variable} ${nunito_sans.variable}`}>
           <Component {...pageProps} />
         </div>

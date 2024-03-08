@@ -7,7 +7,7 @@ import { RootState } from '../configureStore';
 
 //Types//
 type ActivitiesState = {
-  activities: [];
+  activities: TActivity[];
   activities_initial_loading: boolean;
   activities_fetching_new: boolean;
   activities_error: string;
@@ -23,16 +23,50 @@ const initialState: ActivitiesState = {
 };
 
 //Asinc actions//
-export const getActivities = createAsyncThunk(
+export const getActivities = createAsyncThunk<TActivity[], void>(
   'activities/getActivities',
   async () => {
     try {
-      const response = await fetch('http://www.boredapi.com/api/activity/');
-      const data = await response.json();
-      return data;
+      const response = await Promise.allSettled([
+        fetch('http://www.boredapi.com/api/activity/'),
+        fetch('http://www.boredapi.com/api/activity/'),
+        fetch('http://www.boredapi.com/api/activity/'),
+        fetch('http://www.boredapi.com/api/activity/'),
+        fetch('http://www.boredapi.com/api/activity/'),
+      ]);
+
+      const data = await Promise.allSettled(
+        response.map((res) => {
+          if (res.status === 'fulfilled') {
+            return res.value.json();
+          }
+        })
+      );
+
+      //Removing rejected/unfulfilled promises
+      const fulfilled_data = data.filter((item) => {
+        return item.status === 'fulfilled' && !item.value?.error;
+      });
+
+      let activities: TActivity[] = [];
+
+      fulfilled_data.forEach((item) => {
+        if (item.status === 'fulfilled') {
+          const activity: TActivity = {
+            key: item.value.key,
+            activity: item.value.activity,
+            link: item.value.link,
+            participants: item.value.participants,
+            category: item.value.type,
+          };
+          activities.push(activity);
+        }
+      });
+
+      return activities;
     } catch (error) {
       console.log('Error fetching activities: ', error);
-      return error;
+      throw error;
     }
   }
 );
