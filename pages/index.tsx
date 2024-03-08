@@ -17,7 +17,6 @@ import MainActivitiesSkeleton from "@components/MainActivitiesSkeleton/MainActiv
 //styles
 import styles from "@styles/pages/index.module.scss";
 
-//TODO: Add loading state
 export default function Home() {
   //Redux
   const dispatch = useAppDispatch();
@@ -29,11 +28,11 @@ export default function Home() {
     dispatch(getActivities());
   }, []);
 
-  //Modal
+  //Add custom activity modal
   const [showAddCustomActivityModal, setShowAddCustomActivityModal] =
     useState<boolean>(false);
 
-  const handleCreateModal = () => {
+  const handleCreateActividyModal = () => {
     return (
       <CreateNewActivityModal
         showModal={showAddCustomActivityModal}
@@ -42,12 +41,11 @@ export default function Home() {
     );
   };
 
-  //if (activitiesReducer.activities_initial_loading)
-  //if (true) return <MainActivitiesSkeleton />;
-
   return (
     <>
-      {handleCreateModal()}
+      {/* Modals */}
+      {handleCreateActividyModal()}
+
       <Layout>
         <div className="container">
           <h1>Get inspired, explore, create, learn!</h1>
