@@ -7,10 +7,10 @@ import styles from './Styles.module.scss';
 import trash_icon from '@assets/icons/trash.png';
 import pencil_icon from '@assets/icons/pencil.png';
 
-//TODO: use the global type
 //Types
 type Props = TActivity;
 
+//TODO: Add functionality to the buttons
 const ActivityCard = ({
   activity,
   category,

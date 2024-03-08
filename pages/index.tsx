@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from '@redux/hooks';
 import {
   selectActivitiesState,
   getActivities,
+  getAnotherActivity,
 } from '@redux/slices/activitiesSlices';
 
 //Components
@@ -15,6 +16,7 @@ import ActivityCard from '@components/ActivityCard/ActivityCard';
 //styles
 import styles from '@styles/pages/index.module.scss';
 
+//TODO: Add loading state
 export default function Home() {
   //Redux
   const dispatch = useAppDispatch();
@@ -54,7 +56,11 @@ export default function Home() {
 
           <div className={styles.btn_activities_wrapper}>
             <div className={styles.upper_btn_wrapper}>
-              <button className={`btn__primary ${styles.add_random_btn}`}>
+              {/* TODO: disable if initial loading or fetching new */}
+              <button
+                onClick={() => dispatch(getAnotherActivity())}
+                className={`btn__primary ${styles.add_random_btn}`}
+              >
                 Add Random
               </button>
               <button
