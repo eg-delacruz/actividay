@@ -1,5 +1,5 @@
 type TActivity = {
-  key: string;
+  id: string;
   activity: string;
   link: string;
   participants: number;

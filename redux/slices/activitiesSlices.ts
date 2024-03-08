@@ -40,6 +40,7 @@ export const getActivities = createAsyncThunk<TActivity[], void>(
           if (res.status === 'fulfilled') {
             return res.value.json();
           }
+          return null;
         })
       );
 
@@ -53,7 +54,7 @@ export const getActivities = createAsyncThunk<TActivity[], void>(
       fulfilled_data.forEach((item) => {
         if (item.status === 'fulfilled') {
           const activity: TActivity = {
-            key: item.value.key,
+            id: item.value.key,
             activity: item.value.activity,
             link: item.value.link,
             participants: item.value.participants,

@@ -1,4 +1,3 @@
-import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 
 //Redux
@@ -7,20 +6,21 @@ import {
   selectActivitiesState,
   getActivities,
 } from '@redux/slices/activitiesSlices';
-import { useDispatch } from 'react-redux';
 
 //Components
 import Layout from '@components/Layout/Layout';
 import CreateNewActivityModal from '@components/CreateNewActivityModal/CreateNewActivityModal';
+import ActivityCard from '@components/ActivityCard/ActivityCard';
+
+//styles
+import styles from '@styles/pages/index.module.scss';
 
 export default function Home() {
-  const { theme, setTheme } = useTheme();
-
   //Redux
   const dispatch = useAppDispatch();
 
   const activitiesReducer = useAppSelector(selectActivitiesState);
-  //console.log({ activitiesReducer });
+  console.log({ activitiesReducer });
 
   useEffect(() => {
     dispatch(getActivities());
@@ -43,16 +43,47 @@ export default function Home() {
     <>
       {handleCreateModal()}
       <Layout>
-        <h1>Página principal</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam
-          deleniti iste sint saepe nulla perspiciatis reprehenderit quidem
-          accusantium totam voluptates doloribus, facere consequatur excepturi,
-          quibusdam, molestias distinctio veniam ab modi?
-        </p>
-        <button onClick={() => setShowAddCustomActivityModal(true)}>
-          Show modal
-        </button>
+        <div className='container'>
+          <h1>Get inspired, explore, create, learn!</h1>
+          <p>Are you bored and don&apos;t know what to do?</p>
+          <p>Get inspired by one of these exciting random proposals!</p>
+          <p>But don&apos;t stay on the couch... 😉</p>
+
+          <br />
+          <br />
+
+          <div className={styles.btn_activities_wrapper}>
+            <div className={styles.upper_btn_wrapper}>
+              <button className={`btn__primary ${styles.add_random_btn}`}>
+                Add Random
+              </button>
+              <button
+                className={`btn__primary ${styles.add_custom_btn}`}
+                onClick={() => setShowAddCustomActivityModal(true)}
+              >
+                <div></div>
+                <div></div>
+              </button>
+            </div>
+
+            <br />
+
+            <div className={styles.activities_wrapper}>
+              {activitiesReducer.activities.map((activity) => (
+                <ActivityCard
+                  link={activity.link}
+                  category={activity.category}
+                  key={activity.id}
+                  participants={activity.participants}
+                  activity={activity.activity}
+                  id={activity.id}
+                />
+              ))}
+            </div>
+          </div>
+
+          <br />
+        </div>
       </Layout>
     </>
   );

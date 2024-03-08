@@ -1,0 +1,37 @@
+@import '../vars.scss';
+
+.btn_activities_wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.upper_btn_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .add_custom_btn {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .add_custom_btn > div:first-child {
+    height: 6px;
+    width: 30px;
+    background-color: $color--white;
+    border-radius: 10px;
+    position: absolute;
+    top: 17px;
+  }
+  .add_custom_btn > div:nth-child(2) {
+    height: 30px;
+    width: 6px;
+    background-color: $color--white;
+    border-radius: 10px;
+    position: absolute;
+    top: 5px;
+    left: 17px;
+  }
+}

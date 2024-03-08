@@ -57,6 +57,18 @@ h6 {
   box-sizing: border-box;
 }
 
+.btn__primary {
+  color: $color--white;
+  background-color: $color--btn-red;
+  border: none;
+  cursor: pointer;
+  padding: 10px 6px;
+  border-radius: 20px;
+}
+.btn__primary:hover {
+  opacity: 0.8;
+}
+
 [data-theme='dark'] html,
 [data-theme='dark'] body {
   background-color: $color--bg-blue;

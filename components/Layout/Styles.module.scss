@@ -21,10 +21,19 @@
 .footer {
   margin-top: auto;
   background-color: $color--primary;
+  height: 30px;
+  display: flex;
+  align-items: center;
 }
 
 //Dark theme styles
 [data-theme='dark'] .header,
 [data-theme='dark'] .footer {
   background-color: $color--secondary-dark-green;
+}
+
+@media (width <= 480px) {
+  .footer {
+    @include font-size(14px);
+  }
 }

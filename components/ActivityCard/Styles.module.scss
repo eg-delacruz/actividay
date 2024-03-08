@@ -1,0 +1,53 @@
+@import '../../styles/vars.scss';
+
+.card {
+  background-color: $color--primary;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 3px solid $color--secondary-dark-green;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__info {
+    .headings {
+      @include paragraph--small;
+      color: $color--white;
+    }
+    h4 {
+      margin-bottom: 12px;
+    }
+    a {
+      color: $color--black;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .tags {
+      @include paragraph--small;
+      color: $color--white;
+      background-color: $color--secondary-dark-green;
+      border-radius: 20px;
+      padding: 4px;
+      margin-right: 4px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    margin-left: 4px;
+    .icon_container {
+      background-color: $color--white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      height: 30px;
+      width: 30px;
+      padding: 5px;
+      cursor: pointer;
+    }
+    .pencil {
+      margin-left: 8px;
+    }
+  }
+}
