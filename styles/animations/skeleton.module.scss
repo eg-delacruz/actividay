@@ -1,0 +1,17 @@
+@import "../Vars.scss";
+
+//CLARIFICATIONS:
+//To use this animation, just add the animation: setSkeletonLoading(); property to the desired element/selectors
+
+@function setSkeletonLoading() {
+  @return (skeletonLoading 0.75s linear infinite alternate);
+}
+
+@keyframes skeletonLoading {
+  0% {
+    background-color: #afabb9;
+  }
+  100% {
+    background-color: #dee2e6;
+  }
+}

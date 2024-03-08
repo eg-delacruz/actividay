@@ -1,5 +1,5 @@
-@import './normalize.scss';
-@import './Vars.scss';
+@import "./normalize.scss";
+@import "./Vars.scss";
 
 * {
   box-sizing: border-box;
@@ -69,8 +69,8 @@ h6 {
   opacity: 0.8;
 }
 
-[data-theme='dark'] html,
-[data-theme='dark'] body {
+[data-theme="dark"],
+[data-theme="dark"] body {
   background-color: $color--bg-blue;
   color: $color--bg-white;
 }

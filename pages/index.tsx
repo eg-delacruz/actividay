@@ -1,20 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 //Redux
-import { useAppSelector, useAppDispatch } from '@redux/hooks';
+import { useAppSelector, useAppDispatch } from "@redux/hooks";
 import {
   selectActivitiesState,
   getActivities,
   getAnotherActivity,
-} from '@redux/slices/activitiesSlices';
+} from "@redux/slices/activitiesSlices";
 
 //Components
-import Layout from '@components/Layout/Layout';
-import CreateNewActivityModal from '@components/CreateNewActivityModal/CreateNewActivityModal';
-import ActivityCard from '@components/ActivityCard/ActivityCard';
+import Layout from "@components/Layout/Layout";
+import CreateNewActivityModal from "@components/CreateNewActivityModal/CreateNewActivityModal";
+import ActivityCard from "@components/ActivityCard/ActivityCard";
+import MainActivitiesSkeleton from "@components/MainActivitiesSkeleton/MainActivitiesSkeleton";
 
 //styles
-import styles from '@styles/pages/index.module.scss';
+import styles from "@styles/pages/index.module.scss";
 
 //TODO: Add loading state
 export default function Home() {
@@ -41,11 +42,14 @@ export default function Home() {
     );
   };
 
+  //if (activitiesReducer.activities_initial_loading)
+  //if (true) return <MainActivitiesSkeleton />;
+
   return (
     <>
       {handleCreateModal()}
       <Layout>
-        <div className='container'>
+        <div className="container">
           <h1>Get inspired, explore, create, learn!</h1>
           <p>Are you bored and don&apos;t know what to do?</p>
           <p>Get inspired by one of these exciting random proposals!</p>
@@ -54,43 +58,47 @@ export default function Home() {
           <br />
           <br />
 
-          <div className={styles.btn_activities_wrapper}>
-            <div className={styles.upper_btn_wrapper}>
-              <button
-                disabled={activitiesReducer.activities_fetching_new}
-                onClick={() => dispatch(getAnotherActivity())}
-                className={`btn__primary ${
-                  activitiesReducer.activities_fetching_new
-                    ? styles.buttonLoading
-                    : ''
-                }`}
-              >
-                Add Random
-              </button>
-              <button
-                className={`btn__primary ${styles.add_custom_btn}`}
-                onClick={() => setShowAddCustomActivityModal(true)}
-              >
-                <div></div>
-                <div></div>
-              </button>
-            </div>
+          {activitiesReducer.activities_initial_loading ? (
+            <MainActivitiesSkeleton />
+          ) : (
+            <div className={styles.btn_activities_wrapper}>
+              <div className={styles.upper_btn_wrapper}>
+                <button
+                  disabled={activitiesReducer.activities_fetching_new}
+                  onClick={() => dispatch(getAnotherActivity())}
+                  className={`btn__primary ${
+                    activitiesReducer.activities_fetching_new
+                      ? styles.buttonLoading
+                      : ""
+                  }`}
+                >
+                  Add Random
+                </button>
+                <button
+                  className={`btn__primary ${styles.add_custom_btn}`}
+                  onClick={() => setShowAddCustomActivityModal(true)}
+                >
+                  <div></div>
+                  <div></div>
+                </button>
+              </div>
 
-            <br />
+              <br />
 
-            <div className={styles.activities_wrapper}>
-              {activitiesReducer.activities.map((activity) => (
-                <ActivityCard
-                  link={activity.link}
-                  category={activity.category}
-                  key={activity.id}
-                  participants={activity.participants}
-                  activity={activity.activity}
-                  id={activity.id}
-                />
-              ))}
+              <div className={styles.activities_wrapper}>
+                {activitiesReducer.activities.map((activity) => (
+                  <ActivityCard
+                    link={activity.link}
+                    category={activity.category}
+                    key={activity.id}
+                    participants={activity.participants}
+                    activity={activity.activity}
+                    id={activity.id}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <br />
         </div>
