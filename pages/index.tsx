@@ -56,10 +56,14 @@ export default function Home() {
 
           <div className={styles.btn_activities_wrapper}>
             <div className={styles.upper_btn_wrapper}>
-              {/* TODO: disable if initial loading or fetching new */}
               <button
+                disabled={activitiesReducer.activities_fetching_new}
                 onClick={() => dispatch(getAnotherActivity())}
-                className={`btn__primary ${styles.add_random_btn}`}
+                className={`btn__primary ${
+                  activitiesReducer.activities_fetching_new
+                    ? styles.buttonLoading
+                    : ''
+                }`}
               >
                 Add Random
               </button>
