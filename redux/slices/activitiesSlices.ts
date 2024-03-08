@@ -120,7 +120,24 @@ export const getAnotherActivity = createAsyncThunk<TActivity, void>(
 export const activitiesSlice = createSlice({
   name: 'activities',
   initialState,
-  reducers: {},
+  reducers: {
+    eliminateActivity: (state, action: PayloadAction<string>) => {
+      state.activities = state.activities.filter(
+        (activity) => activity.id !== action.payload
+      );
+    },
+    addCustomActivity: (state, action: PayloadAction<TActivity>) => {
+      state.activities.unshift(action.payload);
+    },
+    editActivity: (state, action: PayloadAction<TActivity>) => {
+      const index = state.activities.findIndex(
+        (activity) => activity.id === action.payload.id
+      );
+      if (index !== -1) {
+        state.activities[index] = action.payload;
+      }
+    },
+  },
   extraReducers: (builder) => {
     //Initial fetching of activities
     builder
@@ -153,4 +170,4 @@ export const activitiesSlice = createSlice({
 
 export const selectActivitiesState = (state: RootState) => state.activities;
 
-export const {} = activitiesSlice.actions;
+export const { eliminateActivity } = activitiesSlice.actions;

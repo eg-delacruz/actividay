@@ -1,28 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 //Redux
-import { useAppSelector, useAppDispatch } from "@redux/hooks";
+import { useAppSelector, useAppDispatch } from '@redux/hooks';
 import {
   selectActivitiesState,
   getActivities,
   getAnotherActivity,
-} from "@redux/slices/activitiesSlices";
+} from '@redux/slices/activitiesSlices';
 
 //Components
-import Layout from "@components/Layout/Layout";
-import CreateNewActivityModal from "@components/CreateNewActivityModal/CreateNewActivityModal";
-import ActivityCard from "@components/ActivityCard/ActivityCard";
-import MainActivitiesSkeleton from "@components/MainActivitiesSkeleton/MainActivitiesSkeleton";
+import Layout from '@components/Layout/Layout';
+import CreateNewActivityModal from '@components/CreateNewActivityModal/CreateNewActivityModal';
+import ActivityCard from '@components/ActivityCard/ActivityCard';
+import MainActivitiesSkeleton from '@components/MainActivitiesSkeleton/MainActivitiesSkeleton';
 
 //styles
-import styles from "@styles/pages/index.module.scss";
+import styles from '@styles/pages/index.module.scss';
 
 export default function Home() {
   //Redux
   const dispatch = useAppDispatch();
 
   const activitiesReducer = useAppSelector(selectActivitiesState);
-  console.log({ activitiesReducer });
+  //console.log({ activitiesReducer });
 
   useEffect(() => {
     dispatch(getActivities());
@@ -47,7 +47,7 @@ export default function Home() {
       {handleCreateActividyModal()}
 
       <Layout>
-        <div className="container">
+        <div className='container'>
           <h1>Get inspired, explore, create, learn!</h1>
           <p>Are you bored and don&apos;t know what to do?</p>
           <p>Get inspired by one of these exciting random proposals!</p>
@@ -67,7 +67,7 @@ export default function Home() {
                   className={`btn__primary ${
                     activitiesReducer.activities_fetching_new
                       ? styles.buttonLoading
-                      : ""
+                      : ''
                   }`}
                 >
                   Add Random

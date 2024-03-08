@@ -1,15 +1,15 @@
-import Image from "next/image";
-import { useState } from "react";
+import Image from 'next/image';
+import { useState } from 'react';
 
 //Styles
-import styles from "./Styles.module.scss";
+import styles from './Styles.module.scss';
 
 //Assets
-import trash_icon from "@assets/icons/trash.png";
-import pencil_icon from "@assets/icons/pencil.png";
+import trash_icon from '@assets/icons/trash.png';
+import pencil_icon from '@assets/icons/pencil.png';
 
 //Components
-import DeleteActivityModal from "@components/DeleteActivityModal/DeleteActivityModal";
+import DeleteActivityModal from '@components/DeleteActivityModal/DeleteActivityModal';
 
 //Types
 type Props = TActivity;
@@ -47,7 +47,7 @@ const ActivityCard = ({
           {link && (
             <>
               <p className={styles.headings}>Related link: </p>
-              <a href={link} target="_blank">
+              <a href={link} target='_blank'>
                 {link}
               </a>
             </>
@@ -62,15 +62,14 @@ const ActivityCard = ({
         </div>
 
         <div className={styles.card__buttons}>
-          <div className={styles.icon_container}>
-            <Image
-              onClick={() => setShowDeleteActivityModal(true)}
-              src={trash_icon}
-              alt="trash icon"
-            />
+          <div
+            onClick={() => setShowDeleteActivityModal(true)}
+            className={styles.icon_container}
+          >
+            <Image src={trash_icon} alt='trash icon' />
           </div>
           <div className={`${styles.icon_container} ${styles.pencil}`}>
-            <Image src={pencil_icon} alt="pencil icon" />
+            <Image src={pencil_icon} alt='pencil icon' />
           </div>
         </div>
       </div>

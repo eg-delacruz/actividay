@@ -1,10 +1,15 @@
-import BaseModal from "@components/BaseModal/BaseModal";
+import BaseModal from '@components/BaseModal/BaseModal';
 
 //Styles
-import styles from "./Styles.module.scss";
+import styles from './Styles.module.scss';
 
 //Components
-import WarningExclamation from "@components/WarningExclamation/WarningExclamation";
+import WarningExclamation from '@components/WarningExclamation/WarningExclamation';
+import ConfirmationSwal from '@components/ConfirmationSwal/ConfirmationSwal';
+
+//Redux
+import { useAppDispatch } from '@redux/hooks';
+import { eliminateActivity } from '@redux/slices/activitiesSlices';
 
 type Props = {
   showModal: boolean;
@@ -19,17 +24,25 @@ const DeleteActivityModal = ({
   id,
   activity,
 }: Props) => {
+  const dispatch = useAppDispatch();
+
+  const handleDelete = () => {
+    dispatch(eliminateActivity(id));
+    ConfirmationSwal({ message: 'Actividad eliminada con éxito' });
+  };
   return (
     <>
       <BaseModal show={showModal} onClose={() => setShowModal(false)}>
         <div className={styles.container}>
           <h4>¿Quieres borrar esta actividad?</h4>
           <br />
-          <WarningExclamation color="red" />
+          <WarningExclamation color='red' />
           <br />
           <h3>{activity}</h3>
           <br />
-          <button className="btn__primary">Eliminar</button>
+          <button onClick={handleDelete} className='btn__primary'>
+            Eliminar
+          </button>
         </div>
       </BaseModal>
     </>
