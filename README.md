@@ -16,7 +16,7 @@ Just do not stay on the couch... 😉
 
 [TOC]
 
-#Features
+# Features
 
 - Fetching of four initial activity ideas
 - Add another random activity to the existing list of activities
@@ -26,7 +26,7 @@ Just do not stay on the couch... 😉
 - Responsive UI for different screen sizes
 - Visualize the UI in light or dark mode
 
-#Technologies and justification
+# Technologies and justification
 
 - React with Next JS framework
   The Next JS framework (v 14.1.2) was used because of the prebuild structure and low configuration needed to start a React project. Also a good choice to create a single pag application.
@@ -41,8 +41,9 @@ Just do not stay on the couch... 😉
 - Sweetalert 2
   Library used to create confirmation notifications when the user successfully (or unsuccessfully) completed an action/task.
 
-#Further implementations for the future
-Below are some ideas that could be implemented in the future to improve or extend the functionallity of the application:
+# Further implementations for the future
+
+Below are some ideas that could be implemented in the future to improve or extend the functionality of the application:
 
 - Possibility to filter activities from the list by category or range of participants
 - A searchbar to easily find activities from the list
