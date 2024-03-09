@@ -5,7 +5,11 @@ import {
 } from '@reduxjs/toolkit/react';
 import { RootState } from '../configureStore';
 
-//Types//
+//Utils
+import createRandomUniqueId from '@utils/createRandomUniqueId';
+
+//Types
+import { ActivityDto } from '@tsTypes/activity/activity.dto';
 type ActivitiesState = {
   activities: TActivity[];
   activities_initial_loading: boolean;
@@ -13,8 +17,7 @@ type ActivitiesState = {
   activities_error: string;
 };
 
-//Types//
-
+//Initial state
 const initialState: ActivitiesState = {
   activities: [],
   activities_initial_loading: true,
@@ -126,13 +129,34 @@ export const activitiesSlice = createSlice({
         (activity) => activity.id !== action.payload
       );
     },
-    addCustomActivity: (state, action: PayloadAction<TActivity>) => {
-      state.activities.unshift(action.payload);
+    addCustomActivity: (state, action: PayloadAction<ActivityDto>) => {
+      const { activity, link, participants, category } = action.payload;
+      let uniqueID = createRandomUniqueId({});
+      let keepGenerating = true;
+
+      while (keepGenerating) {
+        if (state.activities.some((item) => item.id === uniqueID)) {
+          uniqueID = createRandomUniqueId({});
+        } else {
+          keepGenerating = false;
+        }
+      }
+
+      state.activities.unshift({
+        id: createRandomUniqueId({}),
+        activity: activity,
+        link: link,
+        participants: participants,
+        category: category,
+      });
     },
     editActivity: (state, action: PayloadAction<TActivity>) => {
+      const { id } = action.payload;
+
       const index = state.activities.findIndex(
-        (activity) => activity.id === action.payload.id
+        (activity) => activity.id === id
       );
+
       if (index !== -1) {
         state.activities[index] = action.payload;
       }
@@ -170,4 +194,5 @@ export const activitiesSlice = createSlice({
 
 export const selectActivitiesState = (state: RootState) => state.activities;
 
-export const { eliminateActivity } = activitiesSlice.actions;
+export const { eliminateActivity, addCustomActivity, editActivity } =
+  activitiesSlice.actions;

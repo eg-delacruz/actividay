@@ -10,19 +10,19 @@ import {
 
 //Components
 import Layout from '@components/Layout/Layout';
-import CreateNewActivityModal from '@components/CreateNewActivityModal/CreateNewActivityModal';
+import CreateEditModal from '@components/CreateEditModal/CreateEditModal';
 import ActivityCard from '@components/ActivityCard/ActivityCard';
 import MainActivitiesSkeleton from '@components/MainActivitiesSkeleton/MainActivitiesSkeleton';
 
 //styles
 import styles from '@styles/pages/index.module.scss';
 
+//TODO: Handle possible errors while fetching activities
 export default function Home() {
   //Redux
   const dispatch = useAppDispatch();
 
   const activitiesReducer = useAppSelector(selectActivitiesState);
-  //console.log({ activitiesReducer });
 
   useEffect(() => {
     dispatch(getActivities());
@@ -34,12 +34,24 @@ export default function Home() {
 
   const handleCreateActividyModal = () => {
     return (
-      <CreateNewActivityModal
+      <CreateEditModal
         showModal={showAddCustomActivityModal}
         setShowModal={setShowAddCustomActivityModal}
+        action='create'
       />
     );
   };
+
+  if (activitiesReducer.activities_error)
+    return (
+      <Layout>
+        <div className='container'>
+          <h1 className={styles.error_while_fetching_message}>
+            There was an error fetching the activities
+          </h1>
+        </div>
+      </Layout>
+    );
 
   return (
     <>

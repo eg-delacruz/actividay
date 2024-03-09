@@ -31,21 +31,19 @@ const DeleteActivityModal = ({
     ConfirmationSwal({ message: 'Actividad eliminada con éxito' });
   };
   return (
-    <>
-      <BaseModal show={showModal} onClose={() => setShowModal(false)}>
-        <div className={styles.container}>
-          <h4>¿Quieres borrar esta actividad?</h4>
-          <br />
-          <WarningExclamation color='red' />
-          <br />
-          <h3>{activity}</h3>
-          <br />
-          <button onClick={handleDelete} className='btn__primary'>
-            Eliminar
-          </button>
-        </div>
-      </BaseModal>
-    </>
+    <BaseModal show={showModal} onClose={() => setShowModal(false)}>
+      <div className={styles.container}>
+        <h4>¿Quieres borrar esta actividad?</h4>
+        <br />
+        <WarningExclamation color='red' />
+        <br />
+        <h3>{activity}</h3>
+        <br />
+        <button onClick={handleDelete} className='btn__primary'>
+          Eliminar
+        </button>
+      </div>
+    </BaseModal>
   );
 };
 

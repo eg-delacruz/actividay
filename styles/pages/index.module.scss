@@ -1,6 +1,13 @@
 @import '../vars.scss';
 @import '../animations/dotLoadingButton.module.scss';
 
+.error_while_fetching_message {
+  margin-top: 20px;
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+
 .btn_activities_wrapper {
   max-width: 500px;
   margin: 0 auto;

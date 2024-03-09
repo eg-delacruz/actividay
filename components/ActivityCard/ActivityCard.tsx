@@ -10,11 +10,11 @@ import pencil_icon from '@assets/icons/pencil.png';
 
 //Components
 import DeleteActivityModal from '@components/DeleteActivityModal/DeleteActivityModal';
+import CreateEditModal from '@components/CreateEditModal/CreateEditModal';
 
 //Types
 type Props = TActivity;
 
-//TODO: Add functionality to the buttons
 const ActivityCard = ({
   activity,
   category,
@@ -37,9 +37,31 @@ const ActivityCard = ({
     );
   };
 
+  //Edit activity modal
+  const [showEditActivityModal, setShowEditActivityModal] =
+    useState<boolean>(false);
+
+  const handleEditActividyModal = () => {
+    return (
+      <CreateEditModal
+        showModal={showEditActivityModal}
+        setShowModal={setShowEditActivityModal}
+        action='edit'
+        id={id}
+        activity={activity}
+        link={link}
+        participants={participants}
+        category={category}
+      />
+    );
+  };
+
   return (
     <>
+      {/* Modals */}
       {handleDeleteActivityModal()}
+      {handleEditActividyModal()}
+
       <div className={styles.card}>
         <div className={styles.card__info}>
           <p className={styles.headings}>Activity</p>
@@ -68,7 +90,10 @@ const ActivityCard = ({
           >
             <Image src={trash_icon} alt='trash icon' />
           </div>
-          <div className={`${styles.icon_container} ${styles.pencil}`}>
+          <div
+            onClick={() => setShowEditActivityModal(true)}
+            className={`${styles.icon_container} ${styles.pencil}`}
+          >
             <Image src={pencil_icon} alt='pencil icon' />
           </div>
         </div>

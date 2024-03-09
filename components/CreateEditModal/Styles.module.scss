@@ -1,0 +1,52 @@
+@import '../../styles/vars.scss';
+
+.container {
+  padding: 10px;
+  h2 {
+    margin-top: -20px;
+  }
+
+  .input_label {
+    margin: 0 0 8px;
+    @include font-size(14px);
+    display: block;
+    font-weight: bold;
+  }
+  .input {
+    background-color: $color--secondary-light-green;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 12px;
+    padding: 0 4px;
+  }
+
+  .category_participants_container {
+    display: flex;
+    justify-content: space-between;
+    .category_input_container {
+      .input {
+        max-width: 300px;
+      }
+    }
+    .participants_input_container {
+      .input {
+        max-width: 70px;
+        margin-left: 8px;
+        text-align: center;
+      }
+    }
+  }
+
+  button {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+[data-theme='dark'] .container {
+  .input {
+    color: $color--black;
+  }
+}

@@ -21,7 +21,9 @@
       "@assets/*": ["./assets/*"],
       "@hooks/*": ["./hooks/*"],
       "@styles/*": ["./styles/*"],
-      "@redux/*": ["./redux/*"]
+      "@redux/*": ["./redux/*"],
+      "@utils/*": ["./utils/*"],
+      "@tsTypes/*": ["./tsTypes/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

@@ -44,5 +44,6 @@
 }
 
 [data-theme='dark'] .modal {
-  color: $color--black;
+  color: $color--white;
+  background-color: $color--bg-blue;
 }
