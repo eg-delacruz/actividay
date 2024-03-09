@@ -104,6 +104,12 @@ const CreateEditModal = ({
         })
       );
 
+      //Reset inputs
+      TITLE.setValue('');
+      LINK.setValue('');
+      CATEGORY.setValue('');
+      PARTICIPANTS.setValue(1);
+
       //Close modal
       setShowModal(false);
 
@@ -128,11 +134,6 @@ const CreateEditModal = ({
       //Show confirmation
       ConfirmationSwal({ message: 'Activity edited successfully!' });
     }
-    //Reset inputs
-    TITLE.setValue('');
-    LINK.setValue('');
-    CATEGORY.setValue('');
-    PARTICIPANTS.setValue(1);
   };
 
   return (
