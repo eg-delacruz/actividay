@@ -10,12 +10,6 @@ Alone at home without any ideas of what to do now?
 Get inspiration by getting random ideas for your next big plan!
 Just do not stay on the couch... 😉
 
-**Table of Contents**
-
-[TOCM]
-
-[TOC]
-
 # Features
 
 - Fetching of four initial activity ideas
