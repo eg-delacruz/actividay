@@ -1,4 +1,4 @@
-@import "../Vars.scss";
+@import '../vars.scss';
 
 @function setDotLoading() {
   @return (dotFlashing 0.25s infinite ease alternate);
@@ -23,7 +23,7 @@
   opacity: 0.6;
 }
 .buttonLoading::after {
-  content: "";
+  content: '';
   position: absolute;
   top: -4px;
   right: 2px;
