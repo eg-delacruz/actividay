@@ -31,10 +31,10 @@ export const getActivities = createAsyncThunk<TActivity[], void>(
   async () => {
     try {
       const response = await Promise.allSettled([
-        fetch('http://www.boredapi.com/api/activity/'),
-        fetch('http://www.boredapi.com/api/activity/'),
-        fetch('http://www.boredapi.com/api/activity/'),
-        fetch('http://www.boredapi.com/api/activity/'),
+        fetch('https://www.boredapi.com/api/activity/'),
+        fetch('https://www.boredapi.com/api/activity/'),
+        fetch('https://www.boredapi.com/api/activity/'),
+        fetch('https://www.boredapi.com/api/activity/'),
       ]);
 
       const data = await Promise.allSettled(
