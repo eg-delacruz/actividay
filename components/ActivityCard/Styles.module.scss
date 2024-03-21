@@ -21,6 +21,9 @@
       color: $color--black;
       margin-bottom: 12px;
       display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .tags {
       @include paragraph--small;
@@ -48,6 +51,16 @@
     }
     .pencil {
       margin-left: 8px;
+    }
+  }
+}
+
+@media (width <= 480px) {
+  .card {
+    &__info {
+      a {
+        max-width: 220px;
+      }
     }
   }
 }
