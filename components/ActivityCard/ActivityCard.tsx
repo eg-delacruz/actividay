@@ -31,7 +31,7 @@ const ActivityCard = ({
 
   const handleDeleteActivityModal = () => {
     return (
-      <Suspense fallback={<div>Cargando...</div>}>
+      <Suspense>
         <DynamicDeleteActivityModal
           showModal={showDeleteActivityModal}
           setShowModal={setShowDeleteActivityModal}
@@ -57,7 +57,7 @@ const ActivityCard = ({
     };
 
     return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense>
         <DynamicCreateEditModal
           showModal={showEditActivityModal}
           setShowModal={setShowEditActivityModal}

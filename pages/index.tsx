@@ -37,7 +37,7 @@ export default function Home() {
 
   const handleCreateActividyModal = () => {
     return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense>
         <DynamicCreateEditModal
           showModal={showAddCustomActivityModal}
           setShowModal={setShowAddCustomActivityModal}

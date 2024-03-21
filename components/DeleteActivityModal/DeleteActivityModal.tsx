@@ -28,19 +28,19 @@ const DeleteActivityModal = ({
 
   const handleDelete = () => {
     dispatch(eliminateActivity(id));
-    ConfirmationSwal({ message: 'Actividad eliminada con éxito' });
+    ConfirmationSwal({ message: 'Activity deleted successfully' });
   };
   return (
     <BaseModal show={showModal} onClose={() => setShowModal(false)}>
       <div className={styles.container}>
-        <h4>¿Quieres borrar esta actividad?</h4>
+        <h4>Delete this activity?</h4>
         <br />
         <WarningExclamation color='red' />
         <br />
         <h3>{activity}</h3>
         <br />
         <button onClick={handleDelete} className='btn__primary'>
-          Eliminar
+          Delete
         </button>
       </div>
     </BaseModal>
