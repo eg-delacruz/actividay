@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 
 //Slices
-//import { commentsSlice } from './slices/commentsSlice';
 import { activitiesSlice } from './slices/activitiesSlices';
 
 //We need a "makeStore" to avoid making the state global and instead create a new state in each request (needed for the Next JS app folder architecture)
