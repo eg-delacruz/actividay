@@ -17,7 +17,6 @@ import MainActivitiesSkeleton from '@components/MainActivitiesSkeleton/MainActiv
 //styles
 import styles from '@styles/pages/index.module.scss';
 
-//TODO: Handle possible errors while fetching activities
 export default function Home() {
   //Redux
   const dispatch = useAppDispatch();

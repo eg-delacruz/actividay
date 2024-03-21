@@ -61,38 +61,38 @@ const CreateEditModal = ({
     setCategoryError('');
     setParticipantsError('');
 
+    let error: boolean = false;
+
     //Checking errors
     if (TITLE.value === '') {
       setTitleError('Title is required');
+      error = true;
     }
 
     if (LINK.value !== '' && !LINK.value?.toString().includes('http')) {
       setLinkError('Link must be a valid URL and include http:// or https://');
+      error = true;
     }
 
     if (CATEGORY.value === '') {
       setCategoryError('Category is required');
+      error = true;
     }
     if (Number.isNaN(Number(PARTICIPANTS.value))) {
       setParticipantsError('Participants must be a number');
+      error = true;
     }
     if (Number(PARTICIPANTS.value) < 1) {
       setParticipantsError('Participants must be at least 1');
+      error = true;
     }
     if (Number(PARTICIPANTS.value) > 99) {
       setParticipantsError('Participants must be less than 100');
+      error = true;
     }
 
     //Stop execution if there are any errors
-    if (
-      TITLE.value === '' ||
-      (LINK.value !== '' && !LINK.value?.toString().includes('http')) ||
-      CATEGORY.value === '' ||
-      Number.isNaN(Number(PARTICIPANTS.value)) ||
-      Number(PARTICIPANTS.value) < 1 ||
-      Number(PARTICIPANTS.value) > 99
-    )
-      return;
+    if (error) return;
 
     if (action === 'create') {
       dispatch(
