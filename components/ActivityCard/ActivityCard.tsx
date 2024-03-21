@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 
 //Styles
 import styles from './Styles.module.scss';
@@ -9,8 +9,6 @@ import trash_icon from '@assets/icons/trash.png';
 import pencil_icon from '@assets/icons/pencil.png';
 
 //Components
-import DeleteActivityModal from '@components/DeleteActivityModal/DeleteActivityModal';
-import CreateEditModal from '@components/CreateEditModal/CreateEditModal';
 
 //Types
 type Props = TActivity;
@@ -26,14 +24,21 @@ const ActivityCard = ({
   const [showDeleteActivityModal, setShowDeleteActivityModal] =
     useState<boolean>(false);
 
+  //Dynamically importing modal
+  const DynamicDeleteActivityModal = lazy(
+    () => import('@components/DeleteActivityModal/DeleteActivityModal')
+  );
+
   const handleDeleteActivityModal = () => {
     return (
-      <DeleteActivityModal
-        showModal={showDeleteActivityModal}
-        setShowModal={setShowDeleteActivityModal}
-        id={id}
-        activity={activity}
-      />
+      <Suspense fallback={<div>Cargando...</div>}>
+        <DynamicDeleteActivityModal
+          showModal={showDeleteActivityModal}
+          setShowModal={setShowDeleteActivityModal}
+          id={id}
+          activity={activity}
+        />
+      </Suspense>
     );
   };
 
@@ -41,18 +46,29 @@ const ActivityCard = ({
   const [showEditActivityModal, setShowEditActivityModal] =
     useState<boolean>(false);
 
+  //Dynamically importing modal
+  const DynamicCreateEditModal = lazy(
+    () => import('@components/CreateEditModal/CreateEditModal')
+  );
+
   const handleEditActividyModal = () => {
+    type Props = TActivity & {
+      action: string;
+    };
+
     return (
-      <CreateEditModal
-        showModal={showEditActivityModal}
-        setShowModal={setShowEditActivityModal}
-        action='edit'
-        id={id}
-        activity={activity}
-        link={link}
-        participants={participants}
-        category={category}
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <DynamicCreateEditModal
+          showModal={showEditActivityModal}
+          setShowModal={setShowEditActivityModal}
+          action='edit'
+          id={id}
+          activity={activity}
+          link={link}
+          participants={participants}
+          category={category}
+        />
+      </Suspense>
     );
   };
 

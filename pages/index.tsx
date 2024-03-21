@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 
 //Redux
 import { useAppSelector, useAppDispatch } from '@redux/hooks';
@@ -10,7 +10,6 @@ import {
 
 //Components
 import Layout from '@components/Layout/Layout';
-import CreateEditModal from '@components/CreateEditModal/CreateEditModal';
 import ActivityCard from '@components/ActivityCard/ActivityCard';
 import MainActivitiesSkeleton from '@components/MainActivitiesSkeleton/MainActivitiesSkeleton';
 
@@ -31,13 +30,20 @@ export default function Home() {
   const [showAddCustomActivityModal, setShowAddCustomActivityModal] =
     useState<boolean>(false);
 
+  //Dynamically importing modal
+  const DynamicCreateEditModal = lazy(
+    () => import('@components/CreateEditModal/CreateEditModal')
+  );
+
   const handleCreateActividyModal = () => {
     return (
-      <CreateEditModal
-        showModal={showAddCustomActivityModal}
-        setShowModal={setShowAddCustomActivityModal}
-        action='create'
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <DynamicCreateEditModal
+          showModal={showAddCustomActivityModal}
+          setShowModal={setShowAddCustomActivityModal}
+          action='create'
+        />
+      </Suspense>
     );
   };
 
