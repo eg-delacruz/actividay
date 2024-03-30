@@ -10,6 +10,7 @@
   justify-content: space-between;
   align-items: center;
   &__info {
+    max-width: 380px;
     .headings {
       @include paragraph--small;
       color: $color--white;

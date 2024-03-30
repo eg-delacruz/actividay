@@ -1,4 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 //Redux
 import { useAppSelector, useAppDispatch } from '@redux/hooks';
@@ -24,7 +25,10 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getActivities());
-  }, []);
+  }, [dispatch]);
+
+  //Animate list of activities
+  const [animationParent] = useAutoAnimate();
 
   //Add custom activity modal
   const [showAddCustomActivityModal, setShowAddCustomActivityModal] =
@@ -100,7 +104,7 @@ export default function Home() {
 
               <br />
 
-              <div className={styles.activities_wrapper}>
+              <div ref={animationParent} className={styles.activities_wrapper}>
                 {activitiesReducer.activities.map((activity) => (
                   <ActivityCard
                     link={activity.link}

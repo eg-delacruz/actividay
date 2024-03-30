@@ -12,6 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
     "@reduxjs/toolkit": "2.2.1",
     "next": "14.1.2",
     "next-redux-wrapper": "8.1.0",
