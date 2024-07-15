@@ -31,10 +31,26 @@ export const getActivities = createAsyncThunk<TActivity[], void>(
   async () => {
     try {
       const response = await Promise.allSettled([
-        fetch('https://www.boredapi.com/api/activity/'),
-        fetch('https://www.boredapi.com/api/activity/'),
-        fetch('https://www.boredapi.com/api/activity/'),
-        fetch('https://www.boredapi.com/api/activity/'),
+        fetch('https://actividayserver-production.up.railway.app/', {
+          headers: {
+            secret_key: process.env.NEXT_PUBLIC_SERVER_SECRET_KEY || '',
+          },
+        }),
+        fetch('https://actividayserver-production.up.railway.app/', {
+          headers: {
+            secret_key: process.env.NEXT_PUBLIC_SERVER_SECRET_KEY || '',
+          },
+        }),
+        fetch('https://actividayserver-production.up.railway.app/', {
+          headers: {
+            secret_key: process.env.NEXT_PUBLIC_SERVER_SECRET_KEY || '',
+          },
+        }),
+        fetch('https://actividayserver-production.up.railway.app/', {
+          headers: {
+            secret_key: process.env.NEXT_PUBLIC_SERVER_SECRET_KEY || '',
+          },
+        }),
       ]);
 
       const data = await Promise.allSettled(
@@ -90,7 +106,14 @@ export const getAnotherActivity = createAsyncThunk<TActivity, void>(
       let retries = 0;
 
       while (continueFetching && retries < maxRetries) {
-        const response = await fetch('https://www.boredapi.com/api/activity/');
+        const response = await fetch(
+          'https://actividayserver-production.up.railway.app/',
+          {
+            headers: {
+              secret_key: process.env.NEXT_PUBLIC_SERVER_SECRET_KEY || '',
+            },
+          }
+        );
         const data = await response.json();
 
         const state = getState() as RootState;
